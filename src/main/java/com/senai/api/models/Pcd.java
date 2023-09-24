@@ -72,7 +72,7 @@ public class Pcd {
 			SetorOcupacao setorOcupacao, RendaMedia rendaMedia, Boolean acessoServicosSaude,
 			String usoDispositivosAssistencia, Boolean participacaoComunidade, Boolean envolvimentoOrganizacoesPCD,
 			Boolean necessidadeCuidadores, Boolean usoBeneficiosSociais, Boolean experienciasDiscriminacao,
-			Boolean tecnologiaAssistiva, Boolean acessaTransportePublico, Date datacenso, Usuario usuarioCriador,
+			Boolean tecnologiaAssistiva, Boolean acessaTransportePublico, Date dataCenso, Usuario usuarioCriador,
 			Usuario usuarioEditor, Bairro bairro) {
 		this.id = id;
 		this.cpfPCD = cpfPCD;
