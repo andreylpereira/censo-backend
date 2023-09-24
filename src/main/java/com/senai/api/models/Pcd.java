@@ -50,7 +50,7 @@ public class Pcd {
 	private Boolean experienciasDiscriminacao;
 	private Boolean tecnologiaAssistiva;
 	private Boolean acessaTransportePublico;
-	private Date datacenso;
+	private Date dataCenso;
 	
     @ManyToOne
     @JoinColumn(name = "usuario_criador_id")
@@ -93,7 +93,7 @@ public class Pcd {
 		this.experienciasDiscriminacao = experienciasDiscriminacao;
 		this.tecnologiaAssistiva = tecnologiaAssistiva;
 		this.acessaTransportePublico = acessaTransportePublico;
-		this.datacenso = datacenso;
+		this.dataCenso = dataCenso;
 		this.usuarioCriador = usuarioCriador;
 		this.usuarioEditor = usuarioEditor;
 		this.bairro = bairro;
@@ -252,11 +252,11 @@ public class Pcd {
 	}
 
 	public Date getDatacenso() {
-		return datacenso;
+		return dataCenso;
 	}
 
 	public void setDatacenso(Date datacenso) {
-		this.datacenso = datacenso;
+		this.dataCenso = datacenso;
 	}
 
 	public Usuario getUsuarioCriador() {
