@@ -30,8 +30,8 @@ public class JWTGenerator {
 		Optional<Usuario> usuario = usuarioRepository.findByCpf(username);
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("id", usuario.get().getId());
-		claims.put("name", usuario.get().getNome());
-		claims.put("permissions", authentication.getAuthorities());
+		claims.put("nome", usuario.get().getNome());
+		claims.put("perfil", authentication.getAuthorities());
 		
 		//setando o que vai no token
 		String token = Jwts.builder()

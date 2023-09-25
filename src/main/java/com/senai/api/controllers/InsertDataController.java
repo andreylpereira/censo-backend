@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.query.criteria.internal.predicate.IsEmptyPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,8 +35,7 @@ public class InsertDataController {
 					Perfil.ADMINISTRADOR, true);
 
 			Optional<Usuario> existeUsuario = usuarioRepository.findByCpf(usuario.getCpf());
-
-			if (existeUsuario != null) {
+			if (!existeUsuario.isEmpty()) {
 				return ResponseEntity.badRequest().build();
 			}
 
