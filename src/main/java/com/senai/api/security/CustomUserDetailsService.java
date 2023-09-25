@@ -19,17 +19,18 @@ import com.senai.api.repository.UsuarioRepository;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private UsuarioRepository usuarioRepository;
+	private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    public CustomUserDetailsService(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
+	@Autowired
+	public CustomUserDetailsService(UsuarioRepository usuarioRepository) {
+		this.usuarioRepository = usuarioRepository;
+	}
 
-    @Override
+	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-		Usuario usuario = usuarioRepository.findByCpf(username).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
+
+		Usuario usuario = usuarioRepository.findByCpf(username)
+				.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 		return new User(usuario.getCpf(), usuario.getSenha(), mapRolesToAuthorities(usuario.getPerfil()));
 	}
 

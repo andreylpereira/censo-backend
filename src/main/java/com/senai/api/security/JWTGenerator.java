@@ -19,10 +19,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JWTGenerator {
-	
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
 	public String generateToken(Authentication authentication) {
 		String username = authentication.getName();
 		Date currentDate = new Date();
@@ -32,26 +32,17 @@ public class JWTGenerator {
 		claims.put("id", usuario.get().getId());
 		claims.put("nome", usuario.get().getNome());
 		claims.put("perfil", authentication.getAuthorities());
-		
-		//setando o que vai no token
-		String token = Jwts.builder()
-				.setClaims(claims)
-				.setSubject(username)
-				.setIssuedAt(new Date())
-				.setExpiration(expireDate)
-				.signWith(SignatureAlgorithm.HS512, SecurityConstants.JWT_SECRET)
-				.compact();
-		
-		System.out.println(token);
+
+		// setando o que vai no token
+		String token = Jwts.builder().setClaims(claims).setSubject(username).setIssuedAt(new Date())
+				.setExpiration(expireDate).signWith(SignatureAlgorithm.HS512, SecurityConstants.JWT_SECRET).compact();
+
 		return token;
 	}
-	
+
 	public String getUsernameFromJWT(String token) {
 
-		Claims claims = Jwts.parser()
-				.setSigningKey(SecurityConstants.JWT_SECRET)
-				.parseClaimsJws(token)
-				.getBody();
+		Claims claims = Jwts.parser().setSigningKey(SecurityConstants.JWT_SECRET).parseClaimsJws(token).getBody();
 
 		return claims.getSubject();
 	}

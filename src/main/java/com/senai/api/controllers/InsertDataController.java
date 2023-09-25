@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.query.criteria.internal.predicate.IsEmptyPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +27,10 @@ public class InsertDataController {
 	private BairroRepository bairroRepository;
 
 	@PostMapping("/admin")
-	public ResponseEntity insertAdmin() {
+	public ResponseEntity<?> insertAdmin() {
 		try {
-			Usuario usuario = new Usuario(1, "07433440909", "123456", "Andrey Luiz Pereira", "andreylpereira@gmail.com", "Administração",
-					Perfil.ADMINISTRADOR, true);
+			Usuario usuario = new Usuario(1, "07433440909", "123456", "Andrey Luiz Pereira", "andreylpereira@gmail.com",
+					"Administração", Perfil.ADMINISTRADOR, true);
 
 			Optional<Usuario> existeUsuario = usuarioRepository.findByCpf(usuario.getCpf());
 			if (!existeUsuario.isEmpty()) {
@@ -67,7 +65,6 @@ public class InsertDataController {
 
 		for (Bairro bairro : bairros) {
 			Boolean existeBairros = bairroRepository.existsById(bairro.getId());
-			System.out.println(existeBairros);
 			if (existeBairros != true) {
 				bairroRepository.save(bairro);
 			} else {
