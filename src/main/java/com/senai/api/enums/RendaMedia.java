@@ -1,5 +1,8 @@
 package com.senai.api.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum RendaMedia {
     RENDA_MEDIA_1("Menos de R$ 1000"),
     RENDA_MEDIA_2("De R$ 1000 a R$ 2000"),
@@ -15,7 +18,18 @@ public enum RendaMedia {
         this.descricao = descricao;
     }
 
+    @JsonValue
     public String getDescricao() {
         return descricao;
+    }
+
+    @JsonCreator
+    public static RendaMedia fromValue(String value) {
+        for (RendaMedia renda : RendaMedia.values()) {
+            if (renda.getDescricao().equalsIgnoreCase(value)) {
+                return renda;
+            }
+        }
+        throw new IllegalArgumentException("Renda Média inválida: " + value);
     }
 }

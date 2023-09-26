@@ -1,5 +1,8 @@
 package com.senai.api.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum SetorOcupacao {
     SAUDE("Saúde"),
     EDUCACAO("Educação"),
@@ -19,7 +22,18 @@ public enum SetorOcupacao {
         this.descricao = descricao;
     }
 
+    @JsonValue
     public String getDescricao() {
         return descricao;
+    }
+
+    @JsonCreator
+    public static SetorOcupacao fromValue(String value) {
+        for (SetorOcupacao setor : SetorOcupacao.values()) {
+            if (setor.getDescricao().equalsIgnoreCase(value)) {
+                return setor;
+            }
+        }
+        throw new IllegalArgumentException("Setor de Ocupação inválido: " + value);
     }
 }

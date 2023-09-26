@@ -26,9 +26,7 @@ import com.senai.api.security.JWTGenerator;
 public class AuthController {
 
 	private AuthenticationManager authenticationManager;
-	@SuppressWarnings("unused")
 	private UsuarioRepository usuarioRepository;
-	@SuppressWarnings("unused")
 	private PasswordEncoder passwordEncoder;
 	private JWTGenerator jwtGenerator;
 
@@ -46,11 +44,10 @@ public class AuthController {
 	public ResponseEntity<AuthResponseDto> login(@RequestBody @Valid Usuario usuario) {
 		Authentication authentication = authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(usuario.getCpf(), usuario.getSenha()));
-		System.out.println(authentication);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String token = jwtGenerator.generateToken(authentication);
 		System.out.println(token);
-		return new ResponseEntity<>(new AuthResponseDto(token), HttpStatus.OK);
+		return new ResponseEntity<>(new AuthResponseDto(token), HttpStatus.ACCEPTED);
 	}
 
 }

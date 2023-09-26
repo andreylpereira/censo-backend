@@ -4,7 +4,7 @@ public class AuthResponseDto {
 
 	private String acessToken;
 	private String tokenType = "Bearer ";
-	
+
 	public AuthResponseDto(String acessToken) {
 		this.acessToken = acessToken;
 	}
@@ -29,6 +29,5 @@ public class AuthResponseDto {
 	public void setTokenType(String tokenType) {
 		this.tokenType = tokenType;
 	}
-		
-	
+
 }

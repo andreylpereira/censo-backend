@@ -35,7 +35,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 	}
 
 	private Collection<GrantedAuthority> mapRolesToAuthorities(Perfil perfil) {
-		System.out.println(perfil.name());
 		return List.of(new SimpleGrantedAuthority(perfil.name()));
 	}
 
